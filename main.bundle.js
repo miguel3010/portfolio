@@ -332,14 +332,14 @@ var InterestsComponent = /** @class */ (function () {
 /***/ "./src/app/Components/navbar/navbar.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "@media (max-width: 756px) { \r\n    .header{\r\n        padding-right: 0;\r\n        padding-left: 0;\r\n\r\n    }\r\n }\r\n\r\n\r\n @media (min-width: 992px) {\r\n    float: right;\r\n }\r\n\r\n\r\n @media (max-width: 992px) { \r\n     .show{\r\n        background: #424242;\r\n     }\r\n     .nav-item{\r\n         color: white; \r\n         margin-left: 5px;\r\n     }\r\n\r\n     .btn-resume {\r\n        margin: 5px;\r\n\r\n     }\r\n }"
 
 /***/ }),
 
 /***/ "./src/app/Components/navbar/navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Advice Ribbon -->\r\n<div *ngIf=\"showRibbon\" class=\"ribbon\" id=\"ribbon\">\r\n\t<p class=\"ribbon-message\">{{ribbon.message}}\r\n\t\t<a class=\"ribbon-link\" href=\"javascript:return false;\" (click)=\"goToRibbonLink()\" >\r\n\t\t\t<b>Here</b>\r\n\t\t</a>\r\n\t</p>\r\n\t<a class=\"ribbon-disponse\" href=\"/\" (click)=\"showRibbon=false;\">\r\n\t\t<i class=\"far fa-times-circle \"></i>\r\n\t</a>\r\n</div>\r\n\r\n <!--  Navbar  -->\r\n <div class=\"header\">\r\n\t<nav class=\"navbar navbar-expand-lg navbar-dark justify-content-between py-4 custom-navbar\">\r\n\t\t<a class=\"navbar-brand\" href=\"/\">Miguel Ángel Campos</a>\r\n\t\t<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNavDropdown\" aria-controls=\"navbarNavDropdown\"\r\n\t\t\taria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n\t\t\t<span class=\"navbar-toggler-icon\"></span>\r\n\t\t</button>\r\n\t\t<form class=\"form-inline my-2 my-lg-0\">\r\n\t\t\t<div class=\"collapse navbar-collapse\" id=\"navbarNavDropdown\">\r\n\t\t\t\t<ul class=\"navbar-nav\">\r\n\t\t\t\t\t<li class=\"nav-item active\">\r\n\t\t\t\t\t\t<a class=\"nav-link\" href=\"#profile\">Profile</a>\r\n\t\t\t\t\t</li>\r\n\t\t\t\t\t<li class=\"nav-item active\">\r\n\t\t\t\t\t\t<a class=\"nav-link\" href=\"#skills\">Skills</a>\r\n\t\t\t\t\t</li>\r\n\t\t\t\t\t<li class=\"nav-item active\">\r\n\t\t\t\t\t\t<a class=\"nav-link\" href=\"#projects\">Projects</a>\r\n\t\t\t\t\t</li>\r\n\t\t\t\t\t<li class=\"nav-item active\">\r\n\t\t\t\t\t\t<a class=\"nav-link\" href=\"#events\">Events</a>\r\n\t\t\t\t\t</li>\r\n\t\t\t\t\t<li class=\"nav-item active\">\r\n\t\t\t\t\t\t<a class=\"nav-link\" href=\"/\" data-toggle=\"modal\" data-target=\".contact-modal\">Contact</a>\r\n\t\t\t\t\t</li>\r\n\t\t\t\t</ul>\r\n\t\t\t\t<a class=\"btn btn-resume\" href=\"assets/docs/Miguel_CV.pdf\" (click)=\"download()\" download=\"Miguel-Resume\">Resume</a>\r\n\t\t\t</div>\r\n\t\t</form>\r\n\t</nav>\r\n</div>"
+module.exports = "<!-- Advice Ribbon -->\r\n<div *ngIf=\"showRibbon\" class=\"ribbon\" id=\"ribbon\">\r\n\t<p class=\"ribbon-message\">{{ribbon.message}}\r\n\t\t<a class=\"ribbon-link\" href=\"javascript:return false;\" (click)=\"goToRibbonLink()\">\r\n\t\t\t<b>Here</b>\r\n\t\t</a>\r\n\t</p>\r\n\t<a class=\"ribbon-disponse\" href=\"javascript:return false;\" (click)=\"disponseRibbon()\">\r\n\t\t<i class=\"far fa-times-circle \"></i>\r\n\t</a>\r\n</div>\r\n\r\n<!--  Navbar  -->\r\n<div class=\"header\">\r\n\t<nav class=\"navbar navbar-expand-lg navbar-dark justify-content-between py-4 custom-navbar\">\r\n\t\t<a class=\"navbar-brand\" href=\"/\">Miguel Ángel Campos</a>\r\n\t\t<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNavDropdown\" aria-controls=\"navbarNavDropdown\"\r\n\t\t aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n\t\t\t<span class=\"navbar-toggler-icon\"></span>\r\n\t\t</button>\r\n\t\t<div class=\"collapse navbar-collapse\" id=\"navbarNavDropdown\">\r\n\t\t\t<ul class=\"navbar-nav ml-auto align-right\">\r\n\t\t\t\t<li class=\"nav-item active\">\r\n\t\t\t\t\t<a class=\"nav-link\" href=\"#profile\">Profile</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li class=\"nav-item active\">\r\n\t\t\t\t\t<a class=\"nav-link\" href=\"#skills\">Skills</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li class=\"nav-item active\">\r\n\t\t\t\t\t<a class=\"nav-link\" href=\"#projects\">Projects</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li class=\"nav-item active\">\r\n\t\t\t\t\t<a class=\"nav-link\" href=\"#events\">Events</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li class=\"nav-item active\">\r\n\t\t\t\t\t<a class=\"nav-link\" href=\"/\" data-toggle=\"modal\" data-target=\".contact-modal\">Contact</a>\r\n\t\t\t\t</li>\r\n\t\t\t</ul>\r\n\t\t\t<a class=\"btn btn-resume\" href=\"assets/docs/Miguel_CV.pdf\" (click)=\"download()\" download=\"Miguel-Resume\">Resume</a>\r\n\t\t\r\n\t\t</div>\r\n\r\n\t</nav>\r\n</div>"
 
 /***/ }),
 
@@ -370,7 +370,22 @@ var NavbarComponent = /** @class */ (function () {
     }
     NavbarComponent.prototype.ngOnInit = function () {
         this.ribbon = this.getRibbon();
-        this.showRibbon = true;
+        var token = localStorage.getItem('last-ribbon-update');
+        if (token == null) {
+            this.showRibbon = true;
+        }
+        else {
+            var dateToken = new Date(token);
+            var diffInMs = new Date().getTime() - dateToken.getTime();
+            var diffInHours = diffInMs / 1000 / 60 / 60;
+            if (diffInHours >= 24) {
+                this.showRibbon = true;
+            }
+        }
+    };
+    NavbarComponent.prototype.disponseRibbon = function () {
+        this.showRibbon = false;
+        localStorage.setItem('last-ribbon-update', new Date().toISOString());
     };
     NavbarComponent.prototype.getRibbon = function () {
         var ri = new __WEBPACK_IMPORTED_MODULE_1__model__["c" /* Ribbon */]();
@@ -626,14 +641,14 @@ var ProjectsComponent = /** @class */ (function () {
 /***/ "./src/app/Components/prompt/prompt.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".jumbotron {\r\n    padding-top: 30px;\r\n}\r\n\r\n.prompt-image {\r\n    width: 100%;\r\n    -webkit-box-shadow: 5px 5px 35px 5px rgba(46, 61, 73, .4);\r\n            box-shadow: 5px 5px 35px 5px rgba(46, 61, 73, .4)\r\n}\r\n\r\n.prompt {\r\n    height: -webkit-fit-content;\r\n    height: -moz-fit-content;\r\n    height: fit-content;\r\n    color: #37474F;\r\n}\r\n\r\n.team {\r\n    list-style-type: none;\r\n}\r\n\r\n@media(min-width: 992px) {\r\n    .content {\r\n        padding-left: 30px;\r\n    }\r\n}"
 
 /***/ }),
 
 /***/ "./src/app/Components/prompt/prompt.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--  Prompt  -->\n<div class=\"prompt\">\n\t<div class=\"container \">\n\t\t<div class=\"row justify-content-center\">\n\t\t\t<h1 class=\"billboard-title\">CEO Challenge</h1>\n\t\t\t<div class=\"col-md-10 billboard\">\n\t\t\t\t<div class=\"row\">\n\t\t\t\t\t<div class=\"col-6\">\n\t\t\t\t\t\t<img class=\"front-img\" src=\"assets/image/sao.jpg\" alt=\"\">\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"col-6\">\n\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>"
+module.exports = "<!--  Prompt  -->\n<div class=\"prompt\">\n\t<div class=\"container \">\n\t\t<div class=\"row justify-content-center\">\n\t\t\t<div class=\"col-lg-12 col-xl-10\">\n\t\t\t\t<div class=\"jumbotron\">\n\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t<div class=\"col-md-5 col-xs-12 \">\n\t\t\t\t\t\t\t<img src=\"assets/image/sao.jpg\" class=\"prompt-image \" alt=\"\">\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"col-md-6 content\">\n\t\t\t\t\t\t\t<h1 class=\"title\">ON ROAD TO BRAZIL!</h1>\n\t\t\t\t\t\t\t<h3 class=\"sub-title\">P&G CEO Challenge 2018 </h3>\n\t\t\t\t\t\t\t<h3>\n\t\t\t\t\t\t\t\t<small>Regionals</small>\n\t\t\t\t\t\t\t</h3>\n\t\t\t\t\t\t\t<hr>\n\t\t\t\t\t\t\t<h2>The Canaleros Team</h2>\n\t\t\t\t\t\t\t<ul class=\"team\">\n\t\t\t\t\t\t\t\t<li>Miguel Ángel Campos</li>\n\t\t\t\t\t\t\t\t<li>Nicole Trelles</li>\n\t\t\t\t\t\t\t\t<li>Gabriel Soto</li>\n\t\t\t\t\t\t\t</ul>\n\t\t\t\t\t\t\t<p class=\"final-quote\">Representing\n\t\t\t\t\t\t\t\t<b>Panama</b> and Central America!</p>\n\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\t\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>"
 
 /***/ }),
 
