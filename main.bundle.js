@@ -1056,10 +1056,10 @@ var DatasourceService = /** @class */ (function () {
         project = new __WEBPACK_IMPORTED_MODULE_1__model__["b" /* Project */]();
         project.current = true;
         project.date = this.getDate(2018, 1);
-        project.description = "Web application for the registration, search and visualization of code fragments of any programming language, gathering information from providers like StackOverflow, the project is now refects an advance of 75%.";
+        project.description = "Web application for search and visualize code fragments of any programming language, gathering information from providers like StackOverflow, the project refects an advance of 75%.";
         project.role = "Snippetz";
         project.setting = "Snippets repository web app";
-        project.thumbnail = "assets/image/snippetz.png";
+        project.thumbnail = "assets/image/snippetz.jpg";
         project.type = "Personal";
         this.projects.push(project);
         project = new __WEBPACK_IMPORTED_MODULE_1__model__["b" /* Project */]();
