@@ -146,7 +146,32 @@ var EventsComponent = /** @class */ (function () {
         this.datasource = datasource;
     }
     EventsComponent.prototype.ngOnInit = function () {
-        this.events = this.datasource.getEvents();
+        var i = this.datasource.getEvents();
+        this.events = this.filterAndLimit(i, this.countLimit);
+    };
+    EventsComponent.prototype.filterAndLimit = function (projects, countLimit) {
+        projects.sort(function (b, a) {
+            // convert date object into number to resolve issue in typescript
+            return +new Date(a.date) - +new Date(b.date);
+        });
+        var list = Array();
+        projects.forEach(function (element) {
+            if (element.current) {
+                list.push(element);
+            }
+        });
+        var i = 0;
+        for (var index = 0; index < projects.length; index++) {
+            var element = projects[index];
+            if (!element.current) {
+                i++;
+                list.push(element);
+                if (i === countLimit) {
+                    break;
+                }
+            }
+        }
+        return list;
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
@@ -425,7 +450,7 @@ module.exports = ""
 /***/ "./src/app/Components/profile/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--  Profile  -->\r\n<div class=\"profile content-section\" id=\"profile\">\r\n\t<h1 class=\"section-title\" style=\"background: #0091EA\">\r\n\t\t<i class=\"far fa-user section-icon\"></i>PROFILE</h1>\r\n\t<div class=\"container\">\r\n\t\t<div class=\"row \">\r\n\t\t\t<div class=\"col-sm-5 col-xs-12 \">\r\n\t\t\t\t<img src=\"assets/image/profile-photo.png\" class=\"profile-photo elevated\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col-sm-7 col-xs-12\">\r\n\t\t\t\t<h2 class=\"greet\">\r\n\t\t\t\t\tHEY THERE!\r\n\t\t\t\t\t<i class=\"far fa-hand-spock\" style=\"margin-left: 10px;\"></i>\r\n\t\t\t\t</h2>\r\n\t\t\t\t<h2>Miguel Ángel Campos</h2>\r\n\t\t\t\t<p>Backend Developer / Software Engineer</p>\r\n\r\n\t\t\t\t<app-social-btn></app-social-btn>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\r\n\t</div>\r\n</div>\r\n\r\n<!--  Languages  -->\r\n<div class=\"container\">\r\n\t<div class=\"row languages\">\r\n\t\t<div class=\"col-sm-12 sub-section-title\">\r\n\t\t\t<h2>\r\n\t\t\t\t<i class=\"fas fa-globe icon\"></i> Languages</h2>\r\n\t\t</div>\r\n\t\t<div class=\"col-sm-6 col-xs-12\">\r\n\t\t\t<div class=\"language elevated\">\r\n\t\t\t\t<img class=\"icon\" src=\"assets/image/spain.svg\" alt=\"\">\r\n\t\t\t\t<div class=\"description\">\r\n\t\t\t\t\t<h2 class=\"name\">Spanish</h2>\r\n\t\t\t\t\t<p class=\"legend\">Native Speaker</p>\r\n\t\t\t\t</div>\r\n\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div class=\"col-sm-6 col-xs-12\">\r\n\t\t\t<div class=\"language elevated\">\r\n\t\t\t\t<img class=\"icon\" src=\"assets/image/united-kingdom.svg\" alt=\"\">\r\n\t\t\t\t<div class=\"description\">\r\n\t\t\t\t\t<h2 class=\"name\">English</h2>\r\n\t\t\t\t\t<p class=\"legend\">Intermediate Speaker</p>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<app-studies></app-studies>\r\n<app-interests></app-interests>\r\n<app-hobbies></app-hobbies>"
+module.exports = "<!--  Profile  -->\r\n<div class=\"profile content-section\" id=\"profile\">\r\n\t<h1 class=\"section-title\" style=\"background: #0091EA\">\r\n\t\t<i class=\"far fa-user section-icon\"></i>PROFILE</h1>\r\n\t<div class=\"container\">\r\n\t\t<div class=\"row \">\r\n\t\t\t<div class=\"col-sm-5 col-xs-12 \">\r\n\t\t\t\t<img src=\"assets/image/profile-photo.png\" class=\"profile-photo elevated\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col-sm-7 col-xs-12\">\r\n\t\t\t\t<h2 class=\"greet\">\r\n\t\t\t\t\tHEY THERE!\r\n\t\t\t\t\t<i class=\"far fa-hand-spock\" style=\"margin-left: 10px;\"></i>\r\n\t\t\t\t</h2>\r\n\t\t\t\t<h2>Miguel Ángel Campos</h2>\r\n\t\t\t\t<p>Backend Developer / Software Engineer</p>\r\n\r\n\t\t\t\t<app-social-btn></app-social-btn>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\r\n\t</div>\r\n</div>\r\n\r\n<!--  Languages  -->\r\n<div class=\"container\">\r\n\t<div class=\"row languages\">\r\n\t\t<div class=\"col-sm-12 sub-section-title\">\r\n\t\t\t<h2>\r\n\t\t\t\t<i class=\"fas fa-globe icon\"></i> Languages</h2>\r\n\t\t</div>\r\n\t\t<div class=\"col-sm-6 col-xs-12\">\r\n\t\t\t<div class=\"language elevated\">\r\n\t\t\t\t<img class=\"icon\" src=\"assets/image/spain.svg\" alt=\"\">\r\n\t\t\t\t<div class=\"description\">\r\n\t\t\t\t\t<h2 class=\"name\">Spanish</h2>\r\n\t\t\t\t\t<p class=\"legend\">Native Speaker</p>\r\n\t\t\t\t</div>\r\n\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div class=\"col-sm-6 col-xs-12\">\r\n\t\t\t<div class=\"language elevated\">\r\n\t\t\t\t<img class=\"icon\" src=\"assets/image/united-kingdom.svg\" alt=\"\">\r\n\t\t\t\t<div class=\"description\">\r\n\t\t\t\t\t<h2 class=\"name\">English</h2>\r\n\t\t\t\t\t<p class=\"legend\">Intermediate Speaker</p>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<app-studies></app-studies>\r\n<app-interests></app-interests>\r\n<!-- <app-hobbies></app-hobbies> -->"
 
 /***/ }),
 
@@ -613,7 +638,32 @@ var ProjectsComponent = /** @class */ (function () {
         this.showMorebtn = false;
     }
     ProjectsComponent.prototype.ngOnInit = function () {
-        this.projects = this.datasource.getProjects();
+        var proje = this.datasource.getProjects();
+        this.projects = this.filterAndLimit(proje, this.countLimit);
+    };
+    ProjectsComponent.prototype.filterAndLimit = function (projects, countLimit) {
+        projects.sort(function (b, a) {
+            // convert date object into number to resolve issue in typescript
+            return +new Date(a.date) - +new Date(b.date);
+        });
+        var list = Array();
+        projects.forEach(function (element) {
+            if (element.current) {
+                list.push(element);
+            }
+        });
+        var i = 0;
+        for (var index = 0; index < projects.length; index++) {
+            var element = projects[index];
+            if (!element.current) {
+                i++;
+                list.push(element);
+                if (i === countLimit) {
+                    break;
+                }
+            }
+        }
+        return list;
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
@@ -883,33 +933,41 @@ var DatasourceService = /** @class */ (function () {
         this.loadSoftSkills();
     };
     DatasourceService.prototype.loadEvents = function () {
-        var project = new __WEBPACK_IMPORTED_MODULE_1__model__["b" /* Project */]();
-        project.current = true;
-        project.date = new Date();
-        project.description = "Android developer in Vectrl project lead by IBM Health Corps Team, app for mosquitos data gathering by regions, and intended to work in the future to make better decition making processes in the Ministry of Health of Panama.";
-        project.link = "https://www.google.com/";
-        project.role = "Android Developer";
-        project.setting = "Inter at IBM Health Corps";
-        project.thumbnail = "assets/image/IBM.JPG";
-        project.type = "Personal";
         this.events = new Array();
+        var project = new __WEBPACK_IMPORTED_MODULE_1__model__["b" /* Project */]();
+        project.date = this.getDate(2018, 1);
+        project.description = "First Edition of the prestigious competition of P&G being celebrated here in Panama, dedicated to the future talents of Management, who will be tested on a Business Challenge. The Canaleros Team (my team) were the choosen one to represent Panama.";
+        project.link = "https://pgcareers.com/ceo-challenge";
+        project.role = "CEO Challenge 2018";
+        project.setting = "Local Challenge";
+        project.thumbnail = "assets/image/ceochallenge.jpg";
+        project.type = "Professional";
         this.events.push(project);
+        project = new __WEBPACK_IMPORTED_MODULE_1__model__["b" /* Project */]();
+        project.date = this.getDate(2016, 12);
+        project.description = "The Panama Game Jam is a meeting of games creator that challenge the participants to make one game in one weekend.";
+        project.link = "https://www.panamagamejam.com/";
+        project.role = "Panama Game Jam 2016";
+        project.setting = "Participation";
+        project.thumbnail = "assets/image/gamejam2016.jpg";
+        project.type = "Personal";
         this.events.push(project);
-        this.events.push(project);
+        project = new __WEBPACK_IMPORTED_MODULE_1__model__["b" /* Project */]();
+        project.date = this.getDate(2017, 12);
+        project.description = "The Panama Game Jam now in it's second edition, PGJ is a meeting of games creator that challenge the participants to make one game in one weekend.";
+        project.link = "https://www.panamagamejam.com/";
+        project.role = "Panama Game Jam 2017";
+        project.setting = "Participation";
+        project.thumbnail = "assets/image/gamejam2017.jpg";
+        project.type = "Personal";
         this.events.push(project);
     };
     DatasourceService.prototype.loadHobbies = function () {
         this.hobbies = new Array();
         var i = new __WEBPACK_IMPORTED_MODULE_1__model__["a" /* Interest */]();
-        i.icon = "assets/image/brain.svg";
-        i.legend = "My principal area of interest is AI especially <b>Deep Learning</b>.";
-        i.title = "Artificial Intelligence";
-        i.type = true;
-        this.hobbies.push(i);
-        i = new __WEBPACK_IMPORTED_MODULE_1__model__["a" /* Interest */]();
-        i.icon = "assets/image/startup.svg";
-        i.legend = "I like challenges, so in the near future I would like to begin my own <b>startup</b>.";
-        i.title = "Entrepreneurship";
+        i.icon = "assets/image/friends.svg";
+        i.legend = "Time spent with friends isn’t time spent, it’s time <b>wisely invested.</b>";
+        i.title = "Passing time with friends";
         i.type = true;
         this.hobbies.push(i);
     };
@@ -927,33 +985,85 @@ var DatasourceService = /** @class */ (function () {
         i.title = "Entrepreneurship";
         i.type = true;
         this.interests.push(i);
+        i = new __WEBPACK_IMPORTED_MODULE_1__model__["a" /* Interest */]();
+        i.icon = "assets/image/sketch.svg";
+        i.legend = "I like to think a creative solution to a software problem, and <b>sketch it.</b>";
+        i.title = "Software Design";
+        i.type = true;
+        this.interests.push(i);
     };
     DatasourceService.prototype.loadProjects = function () {
+        this.projects = new Array();
         var project = new __WEBPACK_IMPORTED_MODULE_1__model__["b" /* Project */]();
-        project.current = true;
-        project.date = new Date();
-        project.description = "Android developer in Vectrl project lead by IBM Health Corps Team, app for mosquitos data gathering by regions, and intended to work in the future to make better decition making processes in the Ministry of Health of Panama.";
-        project.link = "https://www.google.com/";
+        project.date = this.getDate(2017, 1);
+        project.description = "Android developer in the project Vectrl lead by IBM Health Corps Team, app for mosquitoes data gathering by regions, and intended to visualize the data in a map and help in the decision making process by the Ministry of Health of Panama.";
+        project.link = "https://www.forbes.com/sites/judystone/2016/08/27/ibm-health-corps-grant-winners-focus-on-infections-and-health-disparities/#369468c43807";
         project.role = "Android Developer";
         project.setting = "Inter at IBM Health Corps";
         project.thumbnail = "assets/image/IBM.JPG";
+        project.type = "Professional";
+        this.projects.push(project);
+        project = new __WEBPACK_IMPORTED_MODULE_1__model__["b" /* Project */]();
+        project.current = false;
+        project.date = this.getDate(2017, 9);
+        project.description = "Queue System simulator using the queue model M/M/1/inf/FIFO, which means that queue configuration is set to a simple canal with an infinite population, the Monte Carlo method is used and can be configured to different probability distributions.";
+        project.role = "Queueing System Simulator";
+        project.link = "https://github.com/miguel3010/proyectoSimulacion";
+        project.setting = "System Modeling and Simulation Project";
+        project.thumbnail = "assets/image/system.jpg";
+        project.type = "Academic";
+        this.projects.push(project);
+        project = new __WEBPACK_IMPORTED_MODULE_1__model__["b" /* Project */]();
+        project.date = this.getDate(2017, 12);
+        project.description = "Video game developed in a group of 5, my role was to be the scrum master, 3D modeling, and scripting, the video game was done in Unity 3D and C# as scripting language.";
+        project.role = "Stay Alive";
+        project.link = "https://github.com/miguel3010/Stay_Alive";
+        project.setting = "First Person Shooting Video Game";
+        project.thumbnail = "assets/image/stay_alive.png";
         project.type = "Personal";
-        this.projects = new Array();
         this.projects.push(project);
+        project = new __WEBPACK_IMPORTED_MODULE_1__model__["b" /* Project */]();
+        project.date = this.getDate(2017, 11);
+        project.description = "Specification of a simulator which let visualize a random walk motion of drones and generate results on disturbances to the autonomous aerial surveillance system, such as unguarded times, or number of battery changes, damage to drones, etc.";
+        project.role = "Random Walk Drone Simulator";
+        project.setting = "Systems modeling and Simulation";
+        project.thumbnail = "assets/image/droneSimulator.png";
+        project.type = "Academic";
         this.projects.push(project);
+        project = new __WEBPACK_IMPORTED_MODULE_1__model__["b" /* Project */]();
+        project.date = this.getDate(2016, 7);
+        project.description = "Naïve bayes algorithm applied for text classification into different languages, built with C# from Scratch (no libraries) and using Angular for frontend, this is only a project for practice my skills in machine learning, and back/frontend coding.";
+        project.role = "Language text Clasifier";
+        project.setting = "Machine Learning project";
+        project.thumbnail = "assets/image/NBC.png";
+        project.link = "https://github.com/miguel3010/NBC_Language_Classifier";
+        project.type = "Personal";
         this.projects.push(project);
+        project = new __WEBPACK_IMPORTED_MODULE_1__model__["b" /* Project */]();
+        project.current = true;
+        project.date = this.getDate(2018, 1);
+        project.description = "Web application for the registration, search and visualization of code fragments of any programming language, gathering information from providers like StackOverflow, the project is now refects an advance of 75%.";
+        project.role = "Snippetz";
+        project.setting = "Snippets repository web app";
+        project.thumbnail = "assets/image/snippetz.png";
+        project.type = "Personal";
         this.projects.push(project);
+        project = new __WEBPACK_IMPORTED_MODULE_1__model__["b" /* Project */]();
+        project.date = this.getDate(2018, 1);
+        project.description = "Python 3 Open Source library for serialization and deserialization of python objects/dicts, the library were designed to make the programmer to write less code when serializing objects in python is the task.";
+        project.role = "Jzon";
+        project.setting = "JSON parser library for Python";
+        project.thumbnail = "assets/image/jzon.png";
+        project.link = "https://github.com/miguel3010/Jzon";
+        project.type = "Personal";
+        this.projects.push(project);
+    };
+    DatasourceService.prototype.getDate = function (year, month) {
+        return new Date(year, month - 1, 1);
     };
     DatasourceService.prototype.loadSoftSkills = function () {
         this.softskills = new Array();
-        var s = new __WEBPACK_IMPORTED_MODULE_1__model__["d" /* SoftSkills */]();
-        s.icon = "assets/image/speak.svg";
-        s.title = "Public Speaking";
-        this.softskills.push(s);
-        s = new __WEBPACK_IMPORTED_MODULE_1__model__["d" /* SoftSkills */]();
-        s.icon = "assets/image/research.svg";
-        s.title = "Research";
-        this.softskills.push(s);
+        var s;
         s = new __WEBPACK_IMPORTED_MODULE_1__model__["d" /* SoftSkills */]();
         s.icon = "assets/image/creative.svg";
         s.title = "Critical Thinking";
@@ -961,6 +1071,14 @@ var DatasourceService = /** @class */ (function () {
         s = new __WEBPACK_IMPORTED_MODULE_1__model__["d" /* SoftSkills */]();
         s.icon = "assets/image/leadership.svg";
         s.title = "Leadership";
+        this.softskills.push(s);
+        s = new __WEBPACK_IMPORTED_MODULE_1__model__["d" /* SoftSkills */]();
+        s.icon = "assets/image/speak.svg";
+        s.title = "Public Speaking";
+        this.softskills.push(s);
+        s = new __WEBPACK_IMPORTED_MODULE_1__model__["d" /* SoftSkills */]();
+        s.icon = "assets/image/research.svg";
+        s.title = "Research";
         this.softskills.push(s);
         s = new __WEBPACK_IMPORTED_MODULE_1__model__["d" /* SoftSkills */]();
         s.icon = "assets/image/network.svg";
