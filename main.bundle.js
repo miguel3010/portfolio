@@ -376,6 +376,7 @@ module.exports = "<!-- Advice Ribbon -->\r\n<div *ngIf=\"showRibbon\" class=\"ri
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model__ = __webpack_require__("./src/app/model.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Services_google_analytics_service__ = __webpack_require__("./src/app/Services/google-analytics.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Services_datasource_service__ = __webpack_require__("./src/app/Services/datasource.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -388,23 +389,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var NavbarComponent = /** @class */ (function () {
-    function NavbarComponent(analytics) {
+    function NavbarComponent(analytics, datasource) {
         this.analytics = analytics;
+        this.datasource = datasource;
         this.showRibbon = false;
     }
     NavbarComponent.prototype.ngOnInit = function () {
-        this.ribbon = this.getRibbon();
+        this.ribbon = this.datasource.getRibbon();
         var token = localStorage.getItem('last-ribbon-update');
-        if (token == null) {
-            this.showRibbon = true;
-        }
-        else {
-            var dateToken = new Date(token);
-            var diffInMs = new Date().getTime() - dateToken.getTime();
-            var diffInHours = diffInMs / 1000 / 60 / 60;
-            if (diffInHours >= 24) {
+        if (this.ribbon != null) {
+            if (token == null) {
                 this.showRibbon = true;
+            }
+            else {
+                var dateToken = new Date(token);
+                var diffInMs = new Date().getTime() - dateToken.getTime();
+                var diffInHours = diffInMs / 1000 / 60 / 60;
+                if (diffInHours >= 24) {
+                    this.showRibbon = true;
+                }
             }
         }
     };
@@ -431,7 +436,7 @@ var NavbarComponent = /** @class */ (function () {
             template: __webpack_require__("./src/app/Components/navbar/navbar.component.html"),
             styles: [__webpack_require__("./src/app/Components/navbar/navbar.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__Services_google_analytics_service__["a" /* GoogleAnalyticsService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__Services_google_analytics_service__["a" /* GoogleAnalyticsService */], __WEBPACK_IMPORTED_MODULE_3__Services_datasource_service__["a" /* DatasourceService */]])
     ], NavbarComponent);
     return NavbarComponent;
 }());
@@ -642,10 +647,12 @@ var ProjectsComponent = /** @class */ (function () {
         this.projects = this.filterAndLimit(proje, this.countLimit);
     };
     ProjectsComponent.prototype.filterAndLimit = function (projects, countLimit) {
-        projects.sort(function (b, a) {
-            // convert date object into number to resolve issue in typescript
-            return +new Date(a.date) - +new Date(b.date);
-        });
+        /*
+        projects.sort(function(b, a) {
+          // convert date object into number to resolve issue in typescript
+          return  +new Date(a.date) - +new Date(b.date);
+        })
+        */
         var list = Array();
         projects.forEach(function (element) {
             if (element.current) {
@@ -931,6 +938,13 @@ var DatasourceService = /** @class */ (function () {
         this.loadInterest();
         this.loadProjects();
         this.loadSoftSkills();
+        this.loadRibbon();
+    };
+    DatasourceService.prototype.loadRibbon = function () {
+        this.ribbon = null;
+    };
+    DatasourceService.prototype.getRibbon = function () {
+        return this.ribbon;
     };
     DatasourceService.prototype.loadEvents = function () {
         this.events = new Array();
