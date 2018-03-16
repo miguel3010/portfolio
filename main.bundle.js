@@ -641,14 +641,14 @@ var ProjectsComponent = /** @class */ (function () {
 /***/ "./src/app/Components/prompt/prompt.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ".jumbotron {\r\n    padding-top: 30px;\r\n}\r\n\r\n.prompt-image {\r\n    width: 100%;\r\n    -webkit-box-shadow: 5px 5px 35px 5px rgba(46, 61, 73, .4);\r\n            box-shadow: 5px 5px 35px 5px rgba(46, 61, 73, .4)\r\n}\r\n\r\n.prompt {\r\n    height: -webkit-fit-content;\r\n    height: -moz-fit-content;\r\n    height: fit-content;\r\n    color: #37474F;\r\n}\r\n\r\n.team {\r\n    list-style-type: none;\r\n}\r\n\r\n@media(min-width: 992px) {\r\n    .content {\r\n        padding-left: 30px;\r\n    }\r\n}"
+module.exports = ".jumbotron {\r\n    padding-top: 30px; \r\n    margin-top: 25px;\r\n}\r\n\r\n.prompt-image {\r\n    width: 100%;\r\n    -webkit-box-shadow: 5px 5px 35px 5px rgba(46, 61, 73, .4);\r\n            box-shadow: 5px 5px 35px 5px rgba(46, 61, 73, .4)\r\n}\r\n\r\n.prompt {\r\n\r\n    height: -webkit-fit-content;\r\n\r\n    height: -moz-fit-content;\r\n\r\n    height: fit-content;\r\n    color: #37474F;\r\n}\r\n\r\n.team {\r\n    list-style-type: none;\r\n}\r\n\r\n@media(min-width: 992px) {\r\n    .content {\r\n        padding-left: 30px;\r\n    }\r\n\r\n    .prompt{\r\n        min-height: 100%;\r\n        height: 100%;\r\n    }\r\n}"
 
 /***/ }),
 
 /***/ "./src/app/Components/prompt/prompt.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--  Prompt  -->\n<div class=\"prompt\">\n\t<div class=\"container \">\n\t\t<div class=\"row justify-content-center\">\n\t\t\t<div class=\"col-lg-12 col-xl-10\">\n\t\t\t\t<div class=\"jumbotron\">\n\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t<div class=\"col-md-5 col-xs-12 \">\n\t\t\t\t\t\t\t<img src=\"assets/image/sao.jpg\" class=\"prompt-image \" alt=\"\">\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"col-md-6 content\">\n\t\t\t\t\t\t\t<h1 class=\"title\">ON ROAD TO BRAZIL!</h1>\n\t\t\t\t\t\t\t<h3 class=\"sub-title\">P&G CEO Challenge 2018 </h3>\n\t\t\t\t\t\t\t<h3>\n\t\t\t\t\t\t\t\t<small>Regionals</small>\n\t\t\t\t\t\t\t</h3>\n\t\t\t\t\t\t\t<hr>\n\t\t\t\t\t\t\t<h2>The Canaleros Team</h2>\n\t\t\t\t\t\t\t<ul class=\"team\">\n\t\t\t\t\t\t\t\t<li>Miguel Ángel Campos</li>\n\t\t\t\t\t\t\t\t<li>Nicole Trelles</li>\n\t\t\t\t\t\t\t\t<li>Gabriel Soto</li>\n\t\t\t\t\t\t\t</ul>\n\t\t\t\t\t\t\t<p class=\"final-quote\">Representing\n\t\t\t\t\t\t\t\t<b>Panama</b> and Central America!</p>\n\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\t\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>"
+module.exports = "<!--  Prompt  -->\r\n<div class=\"prompt\">\r\n\t<div class=\"container \">\r\n\t\t<div class=\"row justify-content-center\">\r\n\t\t\t<div class=\"col-lg-12 col-xl-10\">\r\n\t\t\t\t<div class=\"jumbotron\">\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t<div class=\"col-md-5 col-xs-12 \">\r\n\t\t\t\t\t\t\t<img src=\"assets/image/sao.jpg\" class=\"prompt-image \" alt=\"\">\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"col-md-6 content\">\r\n\t\t\t\t\t\t\t<h1 class=\"title\">ON ROAD TO BRAZIL!</h1>\r\n\t\t\t\t\t\t\t<h3 class=\"sub-title\">P&G CEO Challenge 2018 </h3>\r\n\t\t\t\t\t\t\t<h3>\r\n\t\t\t\t\t\t\t\t<small>Regionals</small>\r\n\t\t\t\t\t\t\t</h3>\r\n\t\t\t\t\t\t\t<hr>\r\n\t\t\t\t\t\t\t<h2>The Canaleros Team</h2>\r\n\t\t\t\t\t\t\t<ul class=\"team\">\r\n\t\t\t\t\t\t\t\t<li>Miguel Ángel Campos</li>\r\n\t\t\t\t\t\t\t\t<li>Nicole Trelles</li>\r\n\t\t\t\t\t\t\t\t<li>Gabriel Soto</li>\r\n\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t<p class=\"final-quote\">Representing\r\n\t\t\t\t\t\t\t\t<b>Panama</b> and Central America!</p>\r\n\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\t\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>"
 
 /***/ }),
 
@@ -1225,14 +1225,14 @@ var ProjectsViewComponent = /** @class */ (function () {
 /***/ "./src/app/app.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = " "
 
 /***/ }),
 
 /***/ "./src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = " \r\n\r\n<app-navbar></app-navbar>\r\n<router-outlet></router-outlet>"
+module.exports = "\r\n    <app-navbar></app-navbar>\r\n    <router-outlet></router-outlet>\r\n"
 
 /***/ }),
 
