@@ -625,6 +625,7 @@ module.exports = "<!--  Projects  -->\r\n<div class=\"projects content-section\"
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProjectsComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Services_datasource_service__ = __webpack_require__("./src/app/Services/datasource.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__("./node_modules/@angular/platform-browser/esm5/platform-browser.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -636,15 +637,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var ProjectsComponent = /** @class */ (function () {
-    function ProjectsComponent(datasource) {
+    function ProjectsComponent(datasource, meta) {
         this.datasource = datasource;
+        this.meta = meta;
         this.countLimit = -1;
         this.showMorebtn = false;
     }
     ProjectsComponent.prototype.ngOnInit = function () {
         var proje = this.datasource.getProjects();
         this.projects = this.filterAndLimit(proje, this.countLimit);
+        this.SEOTags();
     };
     ProjectsComponent.prototype.filterAndLimit = function (projects, countLimit) {
         /*
@@ -672,6 +676,24 @@ var ProjectsComponent = /** @class */ (function () {
         }
         return list;
     };
+    ProjectsComponent.prototype.SEOTags = function () {
+        var config = {
+            title: 'Projects - Miguel Ángel Campos',
+            description: 'Project in which Miguel Ángel Campos worked on or is the owner | Proyectos en los que Miguel Ángel Camopos ha participado',
+            image: 'https://miguel3010.github.io/portfolio/assets/image/profile-photo.png'
+        };
+        this.meta.updateTag({ name: 'twitter:card', content: 'summary' });
+        this.meta.updateTag({ name: 'twitter:site', content: 'Projects - Miguel Ángel Campos' });
+        this.meta.updateTag({ name: 'twitter:title', content: config.title });
+        this.meta.updateTag({ name: 'twitter:description', content: config.description });
+        this.meta.updateTag({ name: 'twitter:image', content: config.image });
+        this.meta.updateTag({ property: 'og:type', content: 'article' });
+        this.meta.updateTag({ property: 'og:site_name', content: 'Projects - Miguel Ángel Campos' });
+        this.meta.updateTag({ property: 'og:title', content: config.title });
+        this.meta.updateTag({ property: 'og:description', content: config.description });
+        this.meta.updateTag({ property: 'og:image', content: config.image });
+        this.meta.updateTag({ property: 'og:url', content: 'https://miguel3010.github.io/portfolio/projects' });
+    };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
         __metadata("design:type", Number)
@@ -686,7 +708,7 @@ var ProjectsComponent = /** @class */ (function () {
             template: __webpack_require__("./src/app/Components/projects/projects.component.html"),
             styles: [__webpack_require__("./src/app/Components/projects/projects.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__Services_datasource_service__["a" /* DatasourceService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__Services_datasource_service__["a" /* DatasourceService */], __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["b" /* Meta */]])
     ], ProjectsComponent);
     return ProjectsComponent;
 }());
@@ -715,6 +737,7 @@ module.exports = "<!--  Prompt  -->\r\n<div class=\"prompt \">\r\n\t<div class=\
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PromptComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__("./node_modules/@angular/platform-browser/esm5/platform-browser.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -725,10 +748,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var PromptComponent = /** @class */ (function () {
-    function PromptComponent() {
+    function PromptComponent(meta, title) {
+        this.meta = meta;
+        // Sets the <meta> tag for the page 
+        this.SEOTags();
     }
     PromptComponent.prototype.ngOnInit = function () {
+    };
+    PromptComponent.prototype.SEOTags = function () {
+        this.meta.addTag({ name: 'prompt', content: 'ON ROAD TO BRAZIL! P&G CEO Challenge 2018 Regionals The Canaleros Team Miguel Ángel Campos, Nicole Trelles, Gabriel Soto, Representing Panama' });
     };
     PromptComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -736,7 +766,7 @@ var PromptComponent = /** @class */ (function () {
             template: __webpack_require__("./src/app/Components/prompt/prompt.component.html"),
             styles: [__webpack_require__("./src/app/Components/prompt/prompt.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["b" /* Meta */], __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* Title */]])
     ], PromptComponent);
     return PromptComponent;
 }());
@@ -950,7 +980,7 @@ var DatasourceService = /** @class */ (function () {
         this.events = new Array();
         var project = new __WEBPACK_IMPORTED_MODULE_1__model__["b" /* Project */]();
         project.date = this.getDate(2018, 1);
-        project.description = "First Edition of the prestigious competition of P&G being celebrated here in Panama, dedicated to the future talents of Management, who will be tested on a Business Challenge. The Canaleros Team (my team) were the choosen one to represent Panama.";
+        project.description = "First Edition of the prestigious competition of P&G being celebrated here in Panama, dedicated to the future talents of Management, who will be tested on a Business Challenge. The Canaleros Team (my team) were the selected team to represent Panama.";
         project.link = "https://pgcareers.com/ceo-challenge";
         project.role = "CEO Challenge 2018";
         project.setting = "Local Challenge";
@@ -1029,7 +1059,7 @@ var DatasourceService = /** @class */ (function () {
         this.projects.push(project);
         project = new __WEBPACK_IMPORTED_MODULE_1__model__["b" /* Project */]();
         project.date = this.getDate(2017, 12);
-        project.description = "Video game developed in a group of 5, my role was to be the scrum master, 3D modeling, and scripting, the video game was done in Unity 3D and C# as scripting language.";
+        project.description = "Video game developed in a group of 5, my role was to be the scrum master, 3D modeling, and scripting, the video game was  built in Unity 3D and C# as scripting language.";
         project.role = "Stay Alive";
         project.link = "https://github.com/miguel3010/Stay_Alive";
         project.setting = "First Person Shooting Video Game";
@@ -1224,6 +1254,7 @@ module.exports = "<div class=\"content\">\r\n\t<app-prompt></app-prompt>\r\n\t<a
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PortfolioViewComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__("./node_modules/@angular/platform-browser/esm5/platform-browser.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1234,10 +1265,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var PortfolioViewComponent = /** @class */ (function () {
-    function PortfolioViewComponent() {
+    function PortfolioViewComponent(meta) {
+        this.meta = meta;
     }
     PortfolioViewComponent.prototype.ngOnInit = function () {
+        this.SEOTags();
+    };
+    PortfolioViewComponent.prototype.SEOTags = function () {
+        var config = {
+            title: 'Portfolio - Miguel Ángel Campos',
+            description: 'Personal Portfolio - Miguel Ángel Campos | Portafolio personal de Miguel Ángel Campos',
+            image: 'https://miguel3010.github.io/portfolio/assets/image/profile-photo.png'
+        };
+        this.meta.updateTag({ name: 'twitter:card', content: 'summary' });
+        this.meta.updateTag({ name: 'twitter:site', content: 'Portfolio - Miguel Ángel Campos' });
+        this.meta.updateTag({ name: 'twitter:title', content: config.title });
+        this.meta.updateTag({ name: 'twitter:description', content: config.description });
+        this.meta.updateTag({ name: 'twitter:image', content: config.image });
+        this.meta.updateTag({ property: 'og:type', content: 'article' });
+        this.meta.updateTag({ property: 'og:site_name', content: 'Portfolio - Miguel Ángel Campos' });
+        this.meta.updateTag({ property: 'og:title', content: config.title });
+        this.meta.updateTag({ property: 'og:description', content: config.description });
+        this.meta.updateTag({ property: 'og:image', content: config.image });
+        this.meta.updateTag({ property: 'og:url', content: 'https://miguel3010.github.io/portfolio/' });
     };
     PortfolioViewComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -1245,7 +1297,7 @@ var PortfolioViewComponent = /** @class */ (function () {
             template: __webpack_require__("./src/app/Views/portfolio-view/portfolio-view.component.html"),
             styles: [__webpack_require__("./src/app/Views/portfolio-view/portfolio-view.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["b" /* Meta */]])
     ], PortfolioViewComponent);
     return PortfolioViewComponent;
 }());
@@ -1274,6 +1326,7 @@ module.exports = "<div class=\"navbar-paper\">\n</div>\n<div class=\"container\"
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProjectViewComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__("./node_modules/@angular/platform-browser/esm5/platform-browser.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1284,10 +1337,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var ProjectViewComponent = /** @class */ (function () {
-    function ProjectViewComponent() {
+    function ProjectViewComponent(meta) {
+        this.meta = meta;
     }
     ProjectViewComponent.prototype.ngOnInit = function () {
+        this.SEOTags();
+    };
+    ProjectViewComponent.prototype.SEOTags = function () {
+        var config = {
+            title: 'Portfolio - Miguel Ángel Campos',
+            description: 'Personal Portfolio - Miguel Ángel Campos | Portafolio personal de Miguel Ángel Campos',
+            image: 'https://miguel3010.github.io/portfolio/assets/image/profile-photo.png',
+            url: 'https://miguel3010.github.io/portfolio/'
+        };
+        this.meta.updateTag({ name: 'twitter:card', content: 'summary' });
+        this.meta.updateTag({ name: 'twitter:site', content: 'Portfolio - Miguel Ángel Campos' });
+        this.meta.updateTag({ name: 'twitter:title', content: config.title });
+        this.meta.updateTag({ name: 'twitter:description', content: config.description });
+        this.meta.updateTag({ name: 'twitter:image', content: config.image });
+        this.meta.updateTag({ property: 'og:type', content: 'article' });
+        this.meta.updateTag({ property: 'og:site_name', content: 'Portfolio - Miguel Ángel Campos' });
+        this.meta.updateTag({ property: 'og:title', content: config.title });
+        this.meta.updateTag({ property: 'og:description', content: config.description });
+        this.meta.updateTag({ property: 'og:image', content: config.image });
+        this.meta.updateTag({ property: 'og:url', content: config.url });
     };
     ProjectViewComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -1295,7 +1370,7 @@ var ProjectViewComponent = /** @class */ (function () {
             template: __webpack_require__("./src/app/Views/project-view/project-view.component.html"),
             styles: [__webpack_require__("./src/app/Views/project-view/project-view.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["b" /* Meta */]])
     ], ProjectViewComponent);
     return ProjectViewComponent;
 }());
