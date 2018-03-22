@@ -505,7 +505,7 @@ module.exports = ""
 /***/ "./src/app/Components/project-item/project-item.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row justify-content-center\">\n\n<div class=\"col-xs-12 col-xl-8 project\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-xs-8 col-sm-4\" style=\"padding: 0;\">\n        <img class=\"thumbnail img-fluid img-thumbnail\" src=\"{{project.thumbnail}}\" alt=\"\">\n      </div>\n      <div class=\"col-xs-8 col-sm-8 \">\n        <div class=\"row\">\n          <div class=\"col-6\">\n            <h6 class=\"project-date\">{{date}}</h6>\n          </div>\n          <div class=\"col-6\">\n            <p class=\"project-type \" [ngClass]=\"{'project-personal': project.type ==='Personal'}\">\n              <b>#{{project.type}}</b>\n            </p>\n          </div>\n        </div>\n        <h3 class=\"project-role\">{{project.role}}</h3>\n        <h6 class=\"project-setting\">{{project.setting}}</h6>\n        <p class=\"project-description\" [innerHTML]=\"project.description\" ></p>\n\n      </div>\n    </div>\n  </div>\n  <a *ngIf=\"haveLink\" class=\"btn btn-detail\" href=\"{{project.link}}\">Read More\n    <i class=\"fas fa-angle-right icon\"></i>\n  </a>\n</div>\n</div>"
+module.exports = "<div class=\"row justify-content-center\">\n\n<div class=\"col-xs-12 col-xl-8 project\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-xs-8 col-sm-4\" style=\"padding: 0;\">\n        <img class=\"thumbnail img-fluid img-thumbnail\" src=\"{{project.thumbnail}}\" alt=\"\">\n      </div>\n      <div class=\"col-xs-8 col-sm-8 \">\n        <div class=\"row\">\n          <div class=\"col-6\">\n            <h6 class=\"project-date\">{{date}}</h6>\n          </div>\n          <div class=\"col-6\">\n            <p class=\"project-type \" [ngClass]=\"{'project-personal': project.type ==='Personal'}\">\n              <b>#{{project.type}}</b>\n            </p>\n          </div>\n        </div>\n        <h3 class=\"project-role\">{{project.role}}</h3>\n        <h6 class=\"project-setting\">{{project.setting}}</h6>\n        <p class=\"project-description\" [innerHTML]=\"project.description\" ></p>\n\n      </div>\n    </div>\n  </div>\n  <a *ngIf=\"haveLink\" class=\"btn btn-detail\" href=\"{{project.link}}\" (click)=\"reportInteraction()\" >Read More\n    <i class=\"fas fa-angle-right icon\"></i>\n  </a>\n</div>\n</div>"
 
 /***/ }),
 
@@ -516,6 +516,7 @@ module.exports = "<div class=\"row justify-content-center\">\n\n<div class=\"col
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProjectItemComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model__ = __webpack_require__("./src/app/model.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Services_google_analytics_service__ = __webpack_require__("./src/app/Services/google-analytics.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -527,8 +528,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var ProjectItemComponent = /** @class */ (function () {
-    function ProjectItemComponent() {
+    function ProjectItemComponent(analytics) {
+        this.analytics = analytics;
         this.date = "";
         this.haveLink = false;
     }
@@ -585,6 +588,9 @@ var ProjectItemComponent = /** @class */ (function () {
         }
         return m + " " + String(year);
     };
+    ProjectItemComponent.prototype.reportInteraction = function () {
+        this.analytics.emitEvent("Engagement", this.project.role, this.project.link);
+    };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__model__["b" /* Project */])
@@ -595,7 +601,7 @@ var ProjectItemComponent = /** @class */ (function () {
             template: __webpack_require__("./src/app/Components/project-item/project-item.component.html"),
             styles: [__webpack_require__("./src/app/Components/project-item/project-item.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__Services_google_analytics_service__["a" /* GoogleAnalyticsService */]])
     ], ProjectItemComponent);
     return ProjectItemComponent;
 }());
